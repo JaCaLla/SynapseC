@@ -17,51 +17,20 @@ This ecosystem is divided into three distinct integration phases, all powered by
 
 ## 🚀 Phase 1: iOS Integration & SPM Wrapper
 
-This directory contains the iOS implementation. Instead of exposing unsafe raw C pointers, allocations, and manual memory management to the main app, we implement a **Swift Package Manager (SPM) Wrapper**. 
+### 🛠️ Compilation & Local Build
 
-This approach isolates the C boundary, handling data conversion and status codes internally to expose a clean, modern, and type-safe "Swifty" API.
+Before the Swift Package Manager (SPM) wrapper can resolve the native component, you need to compile the C source into a binary format (`.xcframework`). 
 
-### Key Architecture Benefits
+Navigate to the `coreC` directory and execute the compilation script:
 
-* **Zero Boilerplate in App Logic:** The application consumer never deals with C-style memory allocations (`[Int8]` buffers) or raw pointers.
-* **Encapsulated C Types:** Deciphers cryptic integer status codes (e.g., `0` for success, `-1` for insufficient buffer) and translates them into native Swift types or meaningful errors.
-* **Explicit Shadow Prevention:** The wrapper isolates the global ANSI C function names (like `getVersion`) by wrapping them into idiomatic Swift methods (like `fetchVersion()`), preventing namespace collisions.
+```bash
+# 1. Navigate to the native core directory
+cd SynapseC/coreC
 
----
+# 2. Run the build script to generate the XCFramework
+./build_xcframework.sh
 
-## 🛠️ Implementation Detail
-
-The core interaction showcases how an incoming byte-array pointer from ANSI C is safely prepared, populated, and decoded into a native Swift string boundary:
-
-```swift
-import Foundation
-import CoreC
-
-struct CoreCWrapper {
-    
-    /// Safe Swift wrapper for the ANSI C function 'getVersion'
-    /// Renamed to 'fetchVersion()' to avoid shadowing the global C function name.
-    static func fetchVersion() -> String {
-        // 1. Allocate a byte array with enough space for an "X.Y.Z" string
-        let bufferSize = 32
-        var outputBuffer = [Int8](repeating: 0, count: bufferSize)
-        
-        // 2. Call the global ANSI C function safely without naming conflicts
-        let statusCode = getVersion(&outputBuffer, bufferSize)
-        
-        // 3. Evaluate the status code matching the C macro logic
-        switch statusCode {
-        case 0: // VERSION_SUCCESS
-            if let versionSwiftString = String(cString: outputBuffer, encoding: .utf8) {
-                return versionSwiftString
-            } else {
-                return "Error: Could not decode version string from C."
-            }
-        case -1: // VERSION_ERR_INSUFFICIENT_BUF
-            return "Error from C: Insufficient buffer size."
-        default:
-            return "Unknown error in native getVersion component."
-        }
-    }
-}
 ```
+Once executed, the script automatically deploys the compiled package to `SynapseC/coreC/biuld_xcf/spm`. From there, you simply need to import this directory directly into your Xcode project.
+
+
