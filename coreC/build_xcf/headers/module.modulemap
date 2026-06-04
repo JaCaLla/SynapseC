@@ -1,0 +1,4 @@
+module CoreC {
+    header "core_component.h"
+    export *
+}

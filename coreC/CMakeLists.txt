@@ -1,7 +1,13 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.22.1)
+project(CoreC C)
 
-# Nombre de nuestro proyecto de pruebas
-project(TestComponenteC C)
+# ==========================================
+# 1. SHARED CONFIGURATION (iOS / LOCAL)
+# ==========================================
 
-# Indicar qué archivos fuentes componen nuestro programa ejecutable
-add_executable(programa_test main.c core_component.c core_component.h)
+# We create the pure static library for iOS and tests
+add_library(core_c_lib STATIC core_component.c)
+
+# Your current executable for local testing remains exactly the same
+add_executable(programa_test main.c)
+target_link_libraries(programa_test PRIVATE core_c_lib)
