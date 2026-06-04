@@ -9,7 +9,7 @@ A multi-part project demonstrating how to build, encapsulate, and reuse a single
 
 This ecosystem is divided into three distinct integration phases, all powered by the exact same underlying native C logic:
 
-* **Phase 1: iOS Integration (SPM Wrapper)** 🟢 *[Current]* - Exposing the C API safely to Swift using Swift Package Manager.
+* **Phase 1: iOS Integration (SPM Wrapper)** 🟢 *[Current]* - Exposing the C API safely to Swift using Swift Package Manager. Explained step by step process in [Multiplatform ANSI C on iOS](https://javios.eu/architecture/how-to-compile-c-logic-for-the-ios-ecosystem-synapsec-1-3/) post
 * **Phase 2: Android App (JNI Wrapper)** 🟡 *[Coming Soon]* - Bridging the C core to Kotlin using the Java Native Interface.
 * **Phase 3: Backend Server (Docker/Vapor)** 🟡 *[Coming Soon]* - Embedding the C component inside a Swift-based server running on Docker.
 
