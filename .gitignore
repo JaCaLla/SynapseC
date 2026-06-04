@@ -1,62 +1,72 @@
+# Optimized .gitignore for C/CMake project (macOS + common editors)
+
+# macOS
+.DS_Store
+
+# Editors and IDEs
+.idea/
+.vscode/
+*.swp
+*~
+*.swo
+
 # Xcode
-#
-# gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
-
-## User settings
 xcuserdata/
+*.xcworkspace
+*.xcodeproj
 
-## Obj-C/Swift specific
-*.hmap
+# CMake / build artifacts
+# Ignore build directories and common CMake outputs
+build/
+**/build/
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+compile_commands.json
 
-## App packaging
-*.ipa
+# Object files, libs, executables
+*.o
+*.obj
+*.lo
+*.a
+*.la
+*.so
+*.dylib
+*.dll
+*.exe
+*.out
+programa_test
+
+# Debug symbols
+*.dSYM/
 *.dSYM.zip
-*.dSYM
 
-## Playgrounds
-timeline.xctimeline
-playground.xcworkspace
+# Static analysis / coverage / logs
+*.log
+coverage/
+*.gcda
+*.gcno
 
-# Swift Package Manager
-#
-# Add this line if you want to avoid checking in source code from Swift Package Manager dependencies.
-# Packages/
-# Package.pins
-# Package.resolved
-# *.xcodeproj
-#
-# Xcode automatically generates this directory with a .xcworkspacedata file and xcuserdata
-# hence it is not needed unless you have added a package configuration file to your project
-# .swiftpm
+# IDE/project-specific
+*.user
+*.iml
 
-.build/
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.orig
 
-# CocoaPods
-#
-# We recommend against adding the Pods directory to your .gitignore. However
-# you should judge for yourself, the pros and cons are mentioned at:
-# https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
-#
-# Pods/
-#
-# Add this line if you want to avoid checking in source code from the Xcode workspace
-# *.xcworkspace
+# Tags, caches
+tags
+.cache/
+.DS_Store
 
-# Carthage
-#
-# Add this line if you want to avoid checking in source code from Carthage dependencies.
-# Carthage/Checkouts
+# Optional: package managers and OS artifacts
+node_modules/
+*.zip
 
-Carthage/Build/
-
-# fastlane
-#
-# It is recommended to not store the screenshots in the git repo.
-# Instead, use fastlane to re-generate the screenshots whenever they are needed.
-# For more information about the recommended setup visit:
-# https://docs.fastlane.tools/best-practices/source-control/#source-control
-
-fastlane/report.xml
-fastlane/Preview.html
-fastlane/screenshots/**/*.png
-fastlane/test_output
+# Keep local build artifacts out of Git (explicit coreC/build ignores are redundant)
+# If you need specific files from a build directory, remove the pattern above and list them explicitly.
