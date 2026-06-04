@@ -70,3 +70,14 @@ node_modules/
 
 # Keep local build artifacts out of Git (explicit coreC/build ignores are redundant)
 # If you need specific files from a build directory, remove the pattern above and list them explicitly.
+coreC/build_ios/programa_test.app/Info.plist
+coreC/build_sim_arm/programa_test.app/Info.plist
+coreC/build_sim_x86/programa_test.app/Info.plist
+coreC/build_xcf/headers/core_component.h
+coreC/build_xcf/headers/module.modulemap
+coreC/build_xcf/spm/Package.swift
+coreC/build_xcf/spm/CoreC.xcframework/Info.plist
+coreC/build_xcf/spm/CoreC.xcframework/ios-arm64/Headers/core_component.h
+coreC/build_xcf/spm/CoreC.xcframework/ios-arm64/Headers/module.modulemap
+coreC/build_xcf/spm/CoreC.xcframework/ios-arm64_x86_64-simulator/Headers/core_component.h
+coreC/build_xcf/spm/CoreC.xcframework/ios-arm64_x86_64-simulator/Headers/module.modulemap

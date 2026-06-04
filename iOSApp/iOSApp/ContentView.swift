@@ -13,7 +13,7 @@ struct ContentView: View {
             Image(systemName: "globe")
                 .imageScale(.large)
                 .foregroundStyle(.tint)
-                Text("Version: \(ValidadorComponente.fetchVersion())")
+                Text("Version: \(CoreCWrapper.fetchVersion())")
                 .font(.title)
                 .bold()
         }

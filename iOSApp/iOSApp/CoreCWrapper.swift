@@ -7,7 +7,7 @@
 import Foundation
 import CoreC
 
-struct ValidadorComponente {
+struct CoreCWrapper {
 
     
     /// Safe Swift wrapper for the ANSI C function 'getVersion'
