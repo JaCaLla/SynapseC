@@ -1,5 +1,5 @@
 
-# SynampseC - Multiplatform Native C Core Ecosystem
+# SynapseC - Multiplatform Native C Core Ecosystem
 
 A multi-part project demonstrating how to build, encapsulate, and reuse a single, pure **ANSI C native core component** across entirely different platform architectures: **iOS**, **Android**, and a cloud-hosted **Dockerized Vapor Backend**.
 
