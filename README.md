@@ -15,7 +15,7 @@ This ecosystem is divided into three distinct integration phases, all powered by
 
 ---
 
-## 🚀 Phase 1: iOS Integration & SPM Wrapper
+##  Phase 1: iOS Integration & SPM Wrapper
 
 ### 🛠️ Compilation & Local Build
 
@@ -33,7 +33,7 @@ cd SynapseC/coreC
 ```
 Once executed, the script automatically deploys the compiled package to `SynapseC/coreC/biuld_xcf/spm`. From there, you simply need to import this directory directly into your Xcode project.
 
-## 🚀 Phase 2: Android integration
+## 🤖 Phase 2: Android integration
 
 ### 🛠️ Compilation & Local Build
 
@@ -49,6 +49,6 @@ cd SynapseC/coreC
 ./build_android.sh
 
 ```
-Once executed, the script automatically deploys the compiled package to `SynapseC/coreC/biuld_xcf/spm`. From there, you simply need to import this directory directly into your Xcode project.
+Once executed, it locates each generated .so file and copies it to two destinations: a local backup directory (jniLibs) and directly into the Android project’s source tree (app/src/main/jniLibs), ensuring that the Android app has all the native binaries it needs for cross-platform hardware compatibility
 
 
