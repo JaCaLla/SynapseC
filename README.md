@@ -52,9 +52,25 @@ cd SynapseC/coreC
 Once executed, it locates each generated .so file and copies it to two destinations: a local backup directory (jniLibs) and directly into the Android project’s source tree (app/src/main/jniLibs), ensuring that the Android app has all the native binaries it needs for cross-platform hardware compatibility
 
 
-## 🤖 Phase 3: Dockerized Vapor backend server
+## 💧 Phase 3: Dockerized Vapor backend server
 
-### 🛠️ Compilation & Local Build
+### 🛠️ Develop & Debug
+
+For develop an debug backend project:
+
+Navigate to the `coreC` directory and execute the compilation script:
+
+```bash
+# 1. Navigate to the native core directory
+cd SynapseC/coreC
+
+# 2. Run the build script to generate binaries for being consumed by Vapor project
+./build_vapor_mac.sh
+
+```
+Once executed, it compiles your native C library into a static binary (libcore_component.a) using gcc and ar. It then deploys both the compiled library and its header file directly into a Swift Vapor backend project following native Swift Package Manager standards.
+
+### 🚢🐳 Deploy 
 
 Before the Swift Package Manager (SPM) wrapper can resolve the native component, you need to compile the C source into a binary format (`.xcframework`). 
 
@@ -65,8 +81,22 @@ Navigate to the `coreC` directory and execute the compilation script:
 cd SynapseC/coreC
 
 # 2. Run the build script to generate the XCFramework
-./build_android.sh
+./build_linux.sh
 
 ```
-Once executed, it locates each generated .so file and copies it to two destinations: a local backup directory (jniLibs) and directly into the Android project’s source tree (app/src/main/jniLibs), ensuring that the Android app has all the native binaries it needs for cross-platform hardware compatibility
+Once executed, it compiles your native C library into a Linux-compatible static binary (libcore_component.a) using gcc with position-independent code enabled. It then deploys this compiled library along with its header file directly into a Swift Vapor backend project following the official Swift Package Manager target structure.
 
+```bash
+# 3. Move back to parent folder
+cd ..
+
+# 2. Build image
+docker build -t swift-backend-app -f SwiftBackend/Dockerfile .
+
+# 3. Deploy container
+docker run -d -p 8080:8080 --name mi-servidor-vapor swift-backend-app
+
+# 4. Call the service
+curl -i "http://localhost:8080/version"
+
+```
